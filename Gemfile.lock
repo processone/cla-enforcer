@@ -15,7 +15,7 @@ GEM
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
     i18n (0.7.0)
-    json (1.8.2)
+    json (1.8.5)
     mini_portile (0.6.2)
     minitest (5.5.1)
     multipart-post (2.0.0)
