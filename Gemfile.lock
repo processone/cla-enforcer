@@ -8,7 +8,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.3.7)
-    docusign_rest (0.1.1)
+    docusign_rest (0.4.4)
       json
       multipart-post (>= 1.2)
     dotenv (1.0.2)
