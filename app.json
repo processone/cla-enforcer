@@ -113,8 +113,7 @@
       "required": false
     },
     "LANG": "en_US.UTF-8",
-    "RACK_ENV": "production",
-    "BUILDPACK_URL": "https://github.com/ddollar/heroku-buildpack-multi.git"
+    "RACK_ENV": "production"
   },
   "scripts": {
     "postdeploy": "bundle exec rake db:migrate"
