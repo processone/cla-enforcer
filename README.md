@@ -14,8 +14,9 @@ for open source projects.
 4. Modify the default [views](app/views) and [templates](lib/templates) as
    needed.
 5. Press the 'Deploy to Heroku' button below.
-6. Make sure you add the wkhtmltopdf buildpack to your deployment:
-   https://github.com/dscout/wkhtmltopdf-buildpack.git
+6. Make sure you add the following buildpacks to your deployment:
+    heroku buildpacks:add --index 1 https://github.com/heroku/heroku-buildpack-apt.git
+    heroku buildpacks:add https://github.com/heroku/heroku-buildpack-apt.git
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
