@@ -19,11 +19,14 @@ require 'cla'
 post '/github/?' do
   content_type 'text/plain'
   request.body.rewind
-  halt(403, "Invalid hub signature. Expected #{('sha1=' + OpenSSL::HMAC.hexdigest(OpenSSL::Digest::Digest.new('sha1'), ENV['GITHUB_VERIFIER_SECRET'], request.body.read))}, found #{request.env['HTTP_X_HUB_SIGNATURE']}...") unless request.env['HTTP_X_HUB_SIGNATURE'] == ('sha1=' + OpenSSL::HMAC.hexdigest(OpenSSL::Digest::Digest.new('sha1'), ENV['GITHUB_VERIFIER_SECRET'], request.body.read))
-  halt(403, 'No payload found, halting...') unless params.include?('payload')
+  content = request.body.read
+  halt(403, "Invalid hub signature. Expected #{('sha1=' + OpenSSL::HMAC.hexdigest(OpenSSL::Digest::Digest.new('sha1'), ENV['GITHUB_VERIFIER_SECRET'], content))}, found #{request.env['HTTP_X_HUB_SIGNATURE']}...") unless request.env['HTTP_X_HUB_SIGNATURE'] == ('sha1=' + OpenSSL::HMAC.hexdigest(OpenSSL::Digest::Digest.new('sha1'), ENV['GITHUB_VERIFIER_SECRET'], content))
+  # halt(403, 'No payload found, halting...') unless params.include?('payload')
+
+  puts "MREMOND: #{content}"
 
   begin
-    payload = JSON.load(params['payload'])
+    payload = JSON.load(content)
   rescue => e
     CLA.logger.error("#{e.class.name}: #{e.message}\n    " + e.backtrace.join("\n    "))
     halt(406, 'Invalid JSON in payload')
@@ -40,6 +43,7 @@ post '/github/?' do
     status 202
     body   "Checking CLA status for #{payload['sender']['login']}..."
   elsif pull_request_commented?(payload)
+    # TODO ? CLA comment: Nothing is implemented to handle comments.
     comment = payload['comment']['body']
 
     if /\[cla (\w+)\]/ =~ comment

@@ -83,9 +83,29 @@ module CLA
 
     def subscribe(repo, uri)
       res =  []
-      res << @octokit.subscribe(File.join(@github_hostname, repo, 'events/pull_request'), File.join(@hostname, uri), @github_verifier)
-      res << @octokit.subscribe(File.join(@github_hostname, repo, 'events/issue_comment'), File.join(@hostname, uri), @github_verifier)
-      res << @octokit.add_label(repo, @label_name, @label_color) rescue 'label exists'
+      res << @octokit.create_hook(repo,
+      'web',
+      {
+        :url => File.join(@hostname, uri),
+        :content_type => 'json',
+        :secret => @github_verifier
+      },
+      {
+        :events => ['pull_request'],
+        :active => true
+    }) rescue 'Hook already exists on this repository'
+      res << @octokit.create_hook(repo,
+      'web',
+      {
+        :url => File.join(@hostname, uri),
+        :content_type => 'json',
+        :secret => @github_verifier
+      },
+      {
+        :events => ['issue_comment'],
+        :active => true
+    }) rescue 'Hook already exists on this repository'
+      res << @octokit.add_label(repo, @label_name, @label_color, {:description => "Contributor needs to sign Agreement (CLA)"}) rescue 'label exists'
       res
     end
 
