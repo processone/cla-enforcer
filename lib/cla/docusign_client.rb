@@ -27,12 +27,60 @@ module CLA
               name:      name,
               email:     email,
               role_name: ENV['DOCUSIGN_TEMPLATE_ROLE'] || 'Contributor',
+              initial_here_tabs: [
+                optional: "false",
+                name:            'Initials',
+                tab_label:       'Initials',
+                tab_order:       1,
+                x_position:      '520',
+                y_position:      '730',
+                page_number:     1
+              ],
+              radio_group_tabs: [
+                group_name: "TypeSelector",
+                tab_order:       2,
+                radios: [
+                  {
+                    x_position:      '66',
+                    y_position:      '295',
+                    page_number:     2,
+                    value:           'Individual',
+                    selected:        true
+                  },
+                  {
+                    x_position:      '66',
+                    y_position:      '320',
+                    page_number:     2,
+                    value:           'Company'
+                  }
+                ],
+                require_all: 'true',
+                shared: 'true'
+              ],
+              text_tabs: [
+                name:            'Address',
+                tab_label:       'Address',
+                x_position:      '290',
+                y_position:      '399',
+                width:           '300',
+                height:          '40',
+                tab_order:       3,
+                page_number:     2
+              ],
+              date_signed_tabs: [
+                name:            'Date',
+                tab_label:       'Date',
+                x_position:      '293',
+                y_position:      '439',
+                page_number:     Integer(ENV['DOCUSIGN_SIGNATURE_PAGE'] || 2)
+              ],
               sign_here_tabs: [
                 name:            'Signature',
-                label:           'Signature',
-                x_position:      ENV['DOCUSIGN_SIGNATURE_POS_X'] || '65',
-                y_position:      ENV['DOCUSIGN_SIGNATURE_POS_Y'] || '680',
-                page_number:     Integer(ENV['DOCUSIGN_SIGNATURE_PAGE'] || 1)
+                tab_label:       'Signature',
+                tab_order:       4,
+                x_position:      ENV['DOCUSIGN_SIGNATURE_POS_X'] || '293',
+                y_position:      ENV['DOCUSIGN_SIGNATURE_POS_Y'] || '452',
+                page_number:     Integer(ENV['DOCUSIGN_SIGNATURE_PAGE'] || 2)
               ]
           }],
           event_notification: {
