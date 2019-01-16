@@ -1,6 +1,6 @@
-# CLA Enforcer
+# CLA Manager
 
-CLA Enforcer is a GitHub and DocuSign API integration to automate a CLA process
+CLA Manager is a GitHub and DocuSign API integration to automate a CLA process
 for open source projects.
 
 ## Installation
@@ -24,7 +24,7 @@ for open source projects.
 
 ## Usage
 
-After you've deployed CLA Enforcer to Heroku, it's time to enable it for the
+After you've deployed CLA Manager to Heroku, it's time to enable it for the
 relevant repositories.
 
 * Make sure that the account you've used for `GITHUB_ACCESS_TOKEN` is added as
@@ -57,8 +57,8 @@ heroku run rake -D
 
 ## Configuration
 
-The CLA Enforcer comes with generic templates for the CLA form, and comment
-bodies. We expect you to customize them before deploying CLA Enforcer.
+The CLA Manager comes with generic templates for the CLA form, and comment
+bodies. We expect you to customize them before deploying CLA Manager.
 
 ### Templates
 
@@ -104,7 +104,7 @@ Views are Sinatra templates that display information to the user.
 
 ### ENV
 
-CLA Enforcer is fully configurable via the environment variables described
+CLA Manager is fully configurable via the environment variables described
 below.
 
 Note that you can skip this section if you're using the 'Deploy to Heroku'
@@ -184,50 +184,50 @@ button as you'll be prompted to specify these automatically.
 
 ## Development
 
-Note that the instructions below assume `https://cla-enforcer.ngrok.com/`
+Note that the instructions below assume `https://cla-manager.ngrok.com/`
 hostname, feel free to use any other hostname, this one is given as an example.
 
 * Clone this repository.
 * [Install Bundler](http://bundler.io/).
-* Download and install CLA Enforcer's dependencies:
+* Download and install CLA Manager's dependencies:
 
 ```bash
 bundle install
 ```
 
 * [Download ngrok](https://ngrok.com/download).
-* Start ngrok with the `cla-enforcer` subdomain and forwarding to port `3000`:
+* Start ngrok with the `cla-manager` subdomain and forwarding to port `3000`:
 
 ```bash
-ngrok -log=stdout -subdomain cla-enforcer 3000
+ngrok -log=stdout -subdomain cla-manager 3000
 ```
 
 * [Register a GitHub application](https://github.com/settings/applications/new)
-  with `https://cla-enforcer.ngrok.com/` as the `Homepage URL` and
-  `https://cla-enforcer.ngrok.com/authorize` as the `Authorization callback URL`.
+  with `https://cla-manager.ngrok.com/` as the `Homepage URL` and
+  `https://cla-manager.ngrok.com/authorize` as the `Authorization callback URL`.
 
 * Create `.env` file in the repository root by modifying defaults in [`.env.sample`](.env.sample).
-  Make sure to set the `HOSTNAME` to `https://cla-enforcer.ngrok.com/` and
+  Make sure to set the `HOSTNAME` to `https://cla-manager.ngrok.com/` and
   `PORT` to `3000`.
 
-* Start CLA Enforcer:
+* Start CLA Manager:
 
 ```bash
-bundle exec dotenv bin/cla-enforcer
+bundle exec dotenv bin/cla-manager
 ```
 
-* Navigate to the CLA Enforcer web interface:
+* Navigate to the CLA Manager web interface:
 
 ```bash
-open https://cla-enforcer.ngrok.com/
+open https://cla-manager.ngrok.com/
 ```
 
-* After you're done, shut down ngrok and cla enforcer by pressing `CTRL+C` in
+* After you're done, shut down ngrok and cla manager by pressing `CTRL+C` in
   their appropriate terminal tabs.
 
 ## How it works
 
-CLA Enforcer is designed to easily run on Heroku's free tier. It consists of a
+CLA Manager is designed to easily run on Heroku's free tier. It consists of a
 Sinatra website served by Puma (Webapp) and a background worker (Worker)
 communicating over a Unix domain socket and sharing a PostgreSQL database
 (Database). You can easily have multiple instances of the API and Workers
@@ -244,7 +244,7 @@ to any in-progress CLA documents from DocuSign Connect API.
 ### Creating a pull request
 
 When a new pull request is created on a given repository, GitHub sends an HTTP
-request to CLA Enforcer's endpoint. CLA Enforcer's API processes the payload and
+request to CLA Manager's endpoint. CLA Manager's API processes the payload and
 sends a relevant message to the Worker.
 
 The Worker checks if the author of the pull request is in the Database and has
