@@ -73,7 +73,7 @@ module CLA
                 x_position:      '290',
                 y_position:      '234',
                 width:           '300',
-                height:          '40',
+                height:          '45',
                 tab_order:       4,
                 page_number:     3
               ],
@@ -87,9 +87,9 @@ module CLA
               sign_here_tabs: [
                 name:            'Signature',
                 tab_label:       'Signature',
-                tab_order:       4,
+                tab_order:       5,
                 x_position:      ENV['DOCUSIGN_SIGNATURE_POS_X'] || '293',
-                y_position:      ENV['DOCUSIGN_SIGNATURE_POS_Y'] || '314',
+                y_position:      ENV['DOCUSIGN_SIGNATURE_POS_Y'] || '308',
                 page_number:     Integer(ENV['DOCUSIGN_SIGNATURE_PAGE'] || 3)
               ]
           }],
