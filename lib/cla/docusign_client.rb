@@ -27,7 +27,7 @@ module CLA
               name:      name,
               email:     email,
               role_name: ENV['DOCUSIGN_TEMPLATE_ROLE'] || 'Contributor',
-              initial_here_tabs: [
+              initial_here_tabs: [{
                 optional: "false",
                 name:            'Initials',
                 tab_label:       'Initials',
@@ -35,22 +35,32 @@ module CLA
                 x_position:      '520',
                 y_position:      '730',
                 page_number:     1
+        },
+        {
+                optional: "false",
+                name:            'Initials',
+                tab_label:       'Initials',
+                tab_order:       2,
+                x_position:      '520',
+                y_position:      '730',
+                page_number:     2
+        },
               ],
               radio_group_tabs: [
                 group_name: "TypeSelector",
-                tab_order:       2,
+                tab_order:       3,
                 radios: [
                   {
-                    x_position:      '66',
-                    y_position:      '295',
-                    page_number:     2,
+                    x_position:      '79',
+                    y_position:      '100',
+                    page_number:     3,
                     value:           'Individual',
                     selected:        true
                   },
                   {
-                    x_position:      '66',
-                    y_position:      '320',
-                    page_number:     2,
+                    x_position:      '79',
+                    y_position:      '131',
+                    page_number:     3,
                     value:           'Company'
                   }
                 ],
@@ -61,26 +71,26 @@ module CLA
                 name:            'Address',
                 tab_label:       'Address',
                 x_position:      '290',
-                y_position:      '399',
+                y_position:      '234',
                 width:           '300',
                 height:          '40',
-                tab_order:       3,
-                page_number:     2
+                tab_order:       4,
+                page_number:     3
               ],
               date_signed_tabs: [
                 name:            'Date',
                 tab_label:       'Date',
                 x_position:      '293',
-                y_position:      '439',
-                page_number:     Integer(ENV['DOCUSIGN_SIGNATURE_PAGE'] || 2)
+                y_position:      '290',
+                page_number:     Integer(ENV['DOCUSIGN_SIGNATURE_PAGE'] || 3)
               ],
               sign_here_tabs: [
                 name:            'Signature',
                 tab_label:       'Signature',
                 tab_order:       4,
                 x_position:      ENV['DOCUSIGN_SIGNATURE_POS_X'] || '293',
-                y_position:      ENV['DOCUSIGN_SIGNATURE_POS_Y'] || '452',
-                page_number:     Integer(ENV['DOCUSIGN_SIGNATURE_PAGE'] || 2)
+                y_position:      ENV['DOCUSIGN_SIGNATURE_POS_Y'] || '314',
+                page_number:     Integer(ENV['DOCUSIGN_SIGNATURE_PAGE'] || 3)
               ]
           }],
           event_notification: {
