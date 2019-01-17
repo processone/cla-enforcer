@@ -7,3 +7,7 @@ heroku run rake cla:enforce[mremond/test-repos]
 ```
 3. Link to generate update Github personal token for bot. You can generate token with following rights: admin:repo_hook, read:user, repo
 https://github.com/settings/tokens
+4. In case of update redeploy on Heroku
+```
+git push heroku master
+```
