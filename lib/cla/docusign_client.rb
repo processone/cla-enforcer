@@ -20,7 +20,7 @@ module CLA
             name: "Contribution License Agreement - #{username}.pdf"
           ],
           email: {
-            subject: @agreement_name,
+            subject: "ProcessOne Contributor Agreement - #{username}",
             body:    'Please review and sign this document.'
           },
           signers: [{
