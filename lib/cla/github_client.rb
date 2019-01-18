@@ -154,6 +154,22 @@ module CLA
       end
     end
 
+    def checkpr(url, sender)    
+      # example url: https://github.com/mremond/test-repos/pull/6
+      parts = url.split('/')
+      if  parts[2] == 'github.com' && parts[5] == 'pull'
+        username = parts[3]
+        repos = parts[4]
+        number = parts[6]
+        enqueue_command('github:pull_request', {
+          user:   username,
+          repo:   repos,
+          sender: sender,
+          number: number
+        })    
+      end
+    end
+
     private
 
     def get_labels(repo, number)

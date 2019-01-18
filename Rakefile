@@ -31,4 +31,9 @@ namespace :cla do
     require 'cla'
     puts CLA.github.missing(args['repository'])
   end
+
+  desc "Check Pull Request and initiate signature process if needed"
+  task :checkpr, [:url, :sender] do |t, args|
+    require 'cla'
+    p CLA.github.checkpr(args['url'], args['sender'])
 end
