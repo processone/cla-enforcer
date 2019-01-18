@@ -175,5 +175,9 @@ module CLA
     def get_labels(repo, number)
       @octokit.paginate "#{Octokit::Repository.path repo}/issues/#{number}/labels", {}
     end
+
+    def enqueue_command(command, data)
+      CLA.queue.publish(command, JSON.dump(data))
+    end
   end
 end
