@@ -159,14 +159,9 @@ module CLA
       parts = url.split('/')
       if  parts[2] == 'github.com' && parts[5] == 'pull'
         username = parts[3]
-        repos = parts[4]
+        repo = parts[4]
         number = parts[6]
-        enqueue_command('github:pull_request', {
-          user:   username,
-          repo:   repos,
-          sender: sender,
-          number: number
-        })    
+        request_signature(username, repo, number, sender)
       end
     end
 
@@ -174,10 +169,6 @@ module CLA
 
     def get_labels(repo, number)
       @octokit.paginate "#{Octokit::Repository.path repo}/issues/#{number}/labels", {}
-    end
-
-    def enqueue_command(command, data)
-      CLA.queue.publish(command, JSON.dump(data))
     end
   end
 end
