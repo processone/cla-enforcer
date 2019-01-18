@@ -23,6 +23,12 @@ module CLA
             subject: "ProcessOne Contributor Agreement - #{username}",
             body:    'Please review and sign this document.'
           },
+          carbonCopies: [
+            {name: "Mickaël Rémond",
+             email: ENV['CC_ACCOUNT_1']}
+             {name: "Elisabeth Daveine",
+             email: ENV['CC_ACCOUNT_2']}
+          ],
           signers: [{
               name:      name,
               email:     email,
