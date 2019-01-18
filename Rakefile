@@ -36,4 +36,5 @@ namespace :cla do
   task :checkpr, [:url, :sender] do |t, args|
     require 'cla'
     p CLA.github.checkpr(args['url'], args['sender'])
+  end
 end
