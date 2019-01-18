@@ -154,6 +154,7 @@ module CLA
       end
     end
 
+    # Send request synchronously (called from rake)
     def checkpr(url, sender)    
       # example url: https://github.com/mremond/test-repos/pull/6
       parts = url.split('/')
