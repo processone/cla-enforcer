@@ -70,9 +70,9 @@ module CLA
               text_tabs: [
                 name:            'Address',
                 tab_label:       'Address',
-                x_position:      '290',
+                x_position:      '310',
                 y_position:      '234',
-                width:           '300',
+                width:           '290',
                 height:          '45',
                 tab_order:       4,
                 page_number:     3
@@ -80,7 +80,7 @@ module CLA
               date_signed_tabs: [
                 name:            'Date',
                 tab_label:       'Date',
-                x_position:      '293',
+                x_position:      '310',
                 y_position:      '290',
                 page_number:     Integer(ENV['DOCUSIGN_SIGNATURE_PAGE'] || 3)
               ],
@@ -89,7 +89,7 @@ module CLA
                 tab_label:       'Signature',
                 tab_order:       5,
                 x_position:      ENV['DOCUSIGN_SIGNATURE_POS_X'] || '293',
-                y_position:      ENV['DOCUSIGN_SIGNATURE_POS_Y'] || '308',
+                y_position:      ENV['DOCUSIGN_SIGNATURE_POS_Y'] || '305',
                 page_number:     Integer(ENV['DOCUSIGN_SIGNATURE_PAGE'] || 3)
               ]
           }],
