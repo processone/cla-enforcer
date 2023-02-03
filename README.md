@@ -54,7 +54,7 @@ bundle install
 bundle update
 ```
 
-## Install PostgresSQL server 13
+### Install PostgresSQL server 13
 
 
 Execute this as one command: 
@@ -85,14 +85,27 @@ sudo -i
 sudo -i -u postgres
 psql
 > CREATE DATABASE "cla-enforcer";
+> CREATE ROLE cla LOGIN;
 ```
 
 Import database dump: 
 
 ```
 sudo -i -u postgres
-psql
 pg_dump -U postgres cla-enforcer < db.pgsql
 ```
 
+### Populate the .env file
 
+You can use the .env.sample as an example. 
+It has to be in the root of the project.
+
+## Run the app
+
+`bundle exec dotenv bin/cla-enforcer`
+
+## Install Caddy web server
+
+```
+sudo yum install golang
+```
