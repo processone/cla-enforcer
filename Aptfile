@@ -1,2 +1,4 @@
 libxrender1
-libssl1.0.0
+libssl3
+libpq-dev
+libpq5

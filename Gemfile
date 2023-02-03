@@ -1,4 +1,4 @@
-ruby '2.4.5'
+ruby '3.1.2'
 source "https://rubygems.org"
 
 gem 'puma'
@@ -8,7 +8,7 @@ gem 'sinatra-param'
 gem 'sinatra-flash'
 gem 'docusign_rest'
 gem 'sequel'
-gem 'pg'
+gem 'pg', '~> 0.18.4'
 gem 'nori'
 gem 'rack-parser', :require => 'rack/parser'
 gem 'nokogiri'
