@@ -2,8 +2,8 @@
 
 ## EC2 Instance Details
 
-    Hosted in AWS, us-east-1. 
-    t2.micro : Amazon Linux2 AMI (HVM), 1 vCPU, 1 GB RAM, 8GB SSD, x86_64
+- Hosted in AWS, us-east-1. 
+- t2.micro : Amazon Linux2 AMI (HVM), 1 vCPU, 1 GB RAM, 8GB SSD, x86_64
 
 ## Setup 
 
@@ -106,6 +106,98 @@ It has to be in the root of the project.
 
 ## Install Caddy web server
 
+
+### Install Go (1.18+) and Caddy: 
+
 ```
-sudo yum install golang
+yum install golang
+git clone "https://github.com/caddyserver/caddy.git"
+cd caddy/cmd/caddy
+go build
+mv caddy /usr/local/bin
+
 ```
+
+### Create user and group caddy
+
+```
+sudo groupadd --system caddy
+sudo useradd --system \
+    --gid caddy \
+    --create-home \
+    --home-dir /var/lib/caddy \
+    --shell /usr/sbin/nologin \
+    --comment "Caddy web server" \
+    caddy
+```
+
+### Create a unit file containing: 
+
+Location : `/etc/systemd/system/caddy.service`
+
+```
+# caddy.service
+#
+# For using Caddy with a config file.
+#
+# Make sure the ExecStart and ExecReload commands are correct
+# for your installation.
+#
+# See https://caddyserver.com/docs/install for instructions.
+#
+# WARNING: This service does not use the --resume flag, so if you
+# use the API to make changes, they will be overwritten by the
+# Caddyfile next time the service is restarted. If you intend to
+# use Caddy's API to configure it, add the --resume flag to the
+# `caddy run` command or use the caddy-api.service file instead.
+
+[Unit]
+Description=Caddy
+Documentation=https://caddyserver.com/docs/
+After=network.target network-online.target
+Requires=network-online.target
+
+[Service]
+Type=notify
+User=caddy
+Group=caddy
+ExecStart=/usr/bin/caddy run --environ --config /etc/caddy/Caddyfile
+ExecReload=/usr/bin/caddy reload --config /etc/caddy/Caddyfile --force
+TimeoutStopSec=5s
+LimitNOFILE=1048576
+LimitNPROC=512
+PrivateDevices=yes
+PrivateTmp=true
+ProtectSystem=full
+AmbientCapabilities=CAP_NET_BIND_SERVICE
+
+[Install]
+WantedBy=multi-user.target
+```
+
+### Create a Caddyfile
+
+Location : `/etc/caddy/Caddyfile`
+
+```
+domain.net {
+        reverse_proxy localhost:PORT
+}
+
+```
+
+### Enable service and start it
+
+```
+sudo systemctl daemon-reload
+sudo systemctl enable --now caddy
+```
+
+
+# Links
+
+- https://github.com/processone/cla-enforcer
+- https://caddyserver.com/docs/build
+- https://us-east-1.console.aws.amazon.com/ec2/v2/home?region=us-east-1#SecurityGroup:group-id=sg-0fcc7f41c134922ff
+- https://us-east-1.console.aws.amazon.com/ec2/v2/home?region=us-east-1#SnapshotDetails:snapshotId=snap-013dfc8e31ccafdec
+- https://caddyserver.com/docs/running#manual-installation
