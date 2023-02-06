@@ -198,6 +198,4 @@ sudo systemctl enable --now caddy
 
 - https://github.com/processone/cla-enforcer
 - https://caddyserver.com/docs/build
-- https://us-east-1.console.aws.amazon.com/ec2/v2/home?region=us-east-1#SecurityGroup:group-id=sg-0fcc7f41c134922ff
-- https://us-east-1.console.aws.amazon.com/ec2/v2/home?region=us-east-1#SnapshotDetails:snapshotId=snap-013dfc8e31ccafdec
 - https://caddyserver.com/docs/running#manual-installation
