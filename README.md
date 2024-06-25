@@ -54,6 +54,13 @@ bundle install
 bundle update
 ```
 
+If you have issues with installing `pg`, you can do : 
+
+```
+bundle config build.pg --with-pg-config=/usr/pgsql-13/bin/pg_config
+bundle install 
+```
+
 ### Install PostgresSQL server 13
 
 
