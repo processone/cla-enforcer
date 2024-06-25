@@ -40,7 +40,7 @@ module CLA; extend self
   end
 
   def docusign
-    @docusign ||= DocusignClient.new(
+    @docusign ||= EversignClient.new(
       DocusignRest::Client.new,
       ENV['AGREEMENT_NAME'] || 'Contribution License Agreement',
       ENV['HOSTNAME']
@@ -137,7 +137,9 @@ DocusignRest.configure do |config|
 end
 
 require 'cla/background_worker'
+require 'cla/signature_client'
 require 'cla/docusign_client'
+require 'cla/eversign_client'
 require 'cla/github_client'
 require 'cla/postgres_sql_contributors'
 require 'cla/process_runner'

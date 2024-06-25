@@ -69,6 +69,36 @@ post '/github/?' do
   end
 end
 
+post '/eversign/?' do
+  request.body.rewind
+  content = request.body.read
+
+  begin
+    payload = JSON.load(content)
+  rescue => e
+    CLA.logger.error("#{e.class.name}: #{e.message}\n    " + e.backtrace.join("\n    "))
+    halt(406, 'Invalid JSON in payload')
+  end
+
+  if payload.has_key?('event_time') &&
+    payload.has_key?('meta') &&
+      payload['meta'].has_key?('related_document_hash') &&
+    'document_signed' == payload['event_type']
+
+    CLA.logger.info "#{payload['meta']['related_document_hash']} #{payload['event_type']} at #{Time.at(payload['event_time'])}"
+
+    enqueue_command('docusign:update', {
+      envelope_id: payload['meta']['related_document_hash'],
+      status:      'Completed',
+      updated_at:  Time.at(payload['event_time'])
+    })
+  else
+    CLA.logger.info "#{payload['event_type']} at #{Time.now}"
+  end
+
+  status 200
+end
+
 post '/docusign/?' do
   if envelope_status_update?(params)
     status = params['DocuSignEnvelopeInformation']['EnvelopeStatus']['RecipientStatuses']['RecipientStatus']['Status']
