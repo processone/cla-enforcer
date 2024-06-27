@@ -4,7 +4,7 @@ APP_BIN=$APP_DIR/bin/cla-enforcer
 APP_LOG=$APP_DIR/logs/app-staging.log
 APP_PID=$APP_DIR/app-staging.pid
 APP_ENV=$APP_DIR/.env.staging
-PUMA_PORT=5000 # Change to 5005 for staging
+PUMA_PORT=5005
 
 # Charger le profil bash
 source ~/.bash_profile
