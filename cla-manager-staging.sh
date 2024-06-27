@@ -4,7 +4,9 @@ APP_BIN=$APP_DIR/bin/cla-enforcer
 APP_LOG=$APP_DIR/logs/app-staging.log
 APP_PID=$APP_DIR/app-staging.pid
 APP_ENV=$APP_DIR/.env.staging
+PUMA_PORT=5000 # Change to 5005 for staging
 
+# Charger le profil bash
 source ~/.bash_profile
 
 start() {
@@ -25,8 +27,19 @@ stop() {
         exit 1
     fi
     echo "Stopping application..."
+    
+    # Kill the main application process
     kill -9 $(cat $APP_PID)
     rm -f $APP_PID
+
+    # Kill only the Puma processes listening on the specified port
+    PUMA_PIDS=$(lsof -i tcp:$PUMA_PORT -t)
+    if [ ! -z "$PUMA_PIDS" ]; then
+        echo "Stopping Puma processes on port $PUMA_PORT..."
+        kill -9 $PUMA_PIDS
+        echo "Puma processes on port $PUMA_PORT stopped"
+    fi
+
     echo "Application stopped"
 }
 
@@ -40,6 +53,14 @@ status() {
         echo "Application is running with PID $(cat $APP_PID)"
     else
         echo "Application is not running"
+    fi
+
+    # Check for Puma processes listening on the specified port
+    PUMA_PIDS=$(lsof -i tcp:$PUMA_PORT -t)
+    if [ ! -z "$PUMA_PIDS" ]; then
+        echo "Puma processes are running on port $PUMA_PORT with PIDs: $PUMA_PIDS"
+    else
+        echo "No Puma processes are running on port $PUMA_PORT"
     fi
 }
 
