@@ -15,3 +15,6 @@ gem 'nokogiri'
 gem 'rake'
 gem 'pdfkit'
 gem 'dotenv'
+
+# Send us pdf agreement
+gem 'actionmailer'
