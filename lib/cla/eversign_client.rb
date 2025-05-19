@@ -11,7 +11,6 @@ module CLA
 
     def send_email(username, name, email, company)
       file = create_pdf(username, name, email, company)
-      # file = File.new '/Users/sebastienluquet/code/cla-enforcer/Metalhearf_.pdf'
 
       base_64_file = Base64.encode64(file.read)
 
@@ -175,13 +174,6 @@ module CLA
         File.unlink(file.path)
         puts file.path
       end
-    end
-
-    def void_envelope(envelope_id)
-      # @client.void_envelope({
-      #   envelope_id:   envelope_id,
-      #   voided_reason: "CLA process restarted (Reset button pressed)"
-      # })
     end
 
   end

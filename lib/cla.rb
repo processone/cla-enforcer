@@ -40,7 +40,7 @@ module CLA; extend self
   end
 
   def docusign
-    @docusign ||= EversignClient.new(
+    @docusign ||= SignatureClient.new(
       DocusignRest::Client.new,
       ENV['AGREEMENT_NAME'] || 'Contribution License Agreement',
       ENV['HOSTNAME']

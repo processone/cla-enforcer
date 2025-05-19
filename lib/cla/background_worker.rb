@@ -39,7 +39,7 @@ module CLA
           when 'github:command'
             @logger.info("Unknown github command #{data['command'].inspect}, skipping")
           when 'docusign:send'
-            envelope_id = @docusign.send_email(data['login'], data['name'], data['email'], data['company'])
+            envelope_id = @docusign.send_pdf(data['login'], data['name'], data['email'], data['company']).try(:message_id)
             @contributors.update_envelope_id(data['login'], envelope_id)
           when 'docusign:update'
             @contributors.update_status(data['envelope_id'], data['status'], data['updated_at'])
