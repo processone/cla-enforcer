@@ -10,7 +10,9 @@ https://github.com/apps/docusign-cla-manager/
 2. Make p1bot a member of the project (admin access). Write is needed to read list of contributors. Admin is needed to create webhooks (can be just set to write after enforce).
 2. Enable for a given project:
 ```
-heroku run rake cla:enforce[mremond/test-repos]
+ssh debian@cla.process-one.net
+debian@cla:~$ docker exec -it cla-enforcer bash
+bundle exec dotenv rake cla:enforce[processone/ejabberd-api]
 ```
 2. Adjust label description:
 Contributor needs to sign Contribution License Agreement
