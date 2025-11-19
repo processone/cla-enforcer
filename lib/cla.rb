@@ -25,7 +25,7 @@ module CLA; extend self
 
   def queue
     @queue ||= begin
-      DomainSocketQueue.new("messages.sock", logger)
+      DomainSocketQueue.new("/tmp/messages.sock", logger)
     end
   end
 
