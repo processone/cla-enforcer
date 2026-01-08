@@ -1,4 +1,4 @@
-# README.md 
+# README.md
 
 ## Tokens
 
@@ -10,10 +10,6 @@ Scope: Repo (all) & admin:repo_hook(all) may be sufficient depending on your cas
 
 ## Run the app
 
+If you need to run it locally, you can do:
+
 `bundle exec dotenv bin/cla-enforcer`
-
-# Links
-
-- https://github.com/processone/cla-enforcer
-- https://caddyserver.com/docs/build
-- https://caddyserver.com/docs/running#manual-installation
