@@ -39,7 +39,7 @@ th,td { padding: 0 0.75em 0.25em 0.75em; margin: 0; font-size: 12px; }
 
 <h2>1. Definitions</h2>
 
-<p>“Contribution” or “contributed materials” means any source code, object code, patch, tool, sample, graphic, specification, manual, documentation, comments, benchmark or any other material posted or submitted by You to ProcessOne for inclusion in, or documentation of, a Product. For the purposes of this definition, “submitted” means any form of electronic, verbal, or written communication sent to ProcessOne or its representatives, including but not limited to communication on electronic mailing lists, source code control systems, and issue tracking systems that are managed by, or on behalf of, ProcessOne for the purpose of discussing and improving ProcessOne Products.</p>
+<p>“Contribution” or “contributed materials” means any source code, object code, patch, tool, sample, graphic, specification, manual, documentation, comments, benchmark or any other material posted or submitted by You to ProcessOne for inclusion in, or documentation of, a Product. For the purposes of this definition, “submitted” means any form of electronic, verbal, or written communication sent to ProcessOne or its representatives, including but not limited to communication on electronic mailing lists, source code control systems, and issue tracking systems that are managed by, or on behalf of, ProcessOne for the purpose of discussing and improving ProcessOne Products. For clarity, Contributions include visual and design elements such as icons, user interface mockups, graphics, logos, and other visual assets intended for inclusion in a Product.</p>
 
 <p>“(ProcessOne) Product”: means a product owned, distributed or managed by ProcessOne.</p>
 
@@ -49,9 +49,13 @@ th,td { padding: 0 0.75em 0.25em 0.75em; margin: 0; font-size: 12px; }
 
 <p>You transfer, as necessary, to ProcessOne the right to file any intellectual property rights relevant to protect Your Contributions and derivative works on behalf of ProcessOne or to allow third party to do so. You agree that ProcessOne may especially register a copyright in Your Contributions and exercise all ownership rights associated with them.</p>
 
-<p>You also grant ProcessOne the right to retrocede to third parties the rights transferred hereunder, as well as the creations resulting from the exercise of the rights transferred, fully or partially, in any form whatsoever, temporarily or permanently, free of charge or in return of remuneration.  The above-mentioned rights are for exploitation on any medium, current or future, known or unknown, as well as any telecommunication network.</p>
+<p>You also grant ProcessOne the right to retrocede to third parties the rights transferred hereunder, as well as the creations resulting from the exercise of the rights transferred, fully or partially, in any form whatsoever, temporarily or permanently, free of charge or in return of remuneration. The above-mentioned rights are for exploitation on any medium, current or future, known or unknown, as well as any telecommunication network.</p>
 
 <p>For the purposes of this section, “perpetual” means the legal term of protection of intellectual property rights attached to the relevant Contributions, as acknowledged by current or future laws. In the event of applicability of several legal regimes, the longest term of protection shall apply to the relevant Creations.</p>
+
+<p>
+  ProcessOne currently releases ejabberd and its dependencies under GPLv2, and Fluux Messenger under AGPLv3. Both products are additionally offered under commercial licenses, allowing licensees to use the software without open source obligations. This dual-licensing model is one of the most proven models for funding sustainable open source development.
+</p>
 
 <h2>3. Grant of Patent License</h2>
 
@@ -92,23 +96,35 @@ th,td { padding: 0 0.75em 0.25em 0.75em; margin: 0; font-size: 12px; }
 
 <table>
   <tr>
-    <th>Username</th>
+    <th>Full Name</th>
+    <td><%= name %></td>
+  </tr>
+  <tr>
+    <th>Github id</th>
     <td><%= username %></td>
   </tr>
   <tr>
-    <th>Full Name</th>
-    <td><%= name %></td>
+    <th>Company's name (if applicable)</th>
+    <td><%= company %></td>
+  </tr>
+  <tr>
+    <th>Title or role (if applicable)</th>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <th>Address / City / Country</th>
+    <td>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;</td>
+  </tr>
+  <tr>
+    <th>Phone number</th>
+    <td>&nbsp;</td>
   </tr>
   <tr>
     <th>Email</th>
     <td><%= email %></td>
   </tr>
   <tr>
-    <th>Company</th>
-    <td><%= company %></td>
-  </tr>
-  <tr>
-    <th>Address / City / Country</th>
+    <th>Signature</th>
     <td>&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;</td>
   </tr>
   <tr>
