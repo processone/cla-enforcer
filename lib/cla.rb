@@ -43,7 +43,7 @@ module CLA; extend self
     @docusign ||= SignatureClient.new(
       DocusignRest::Client.new,
       ENV['AGREEMENT_NAME'] || 'Contribution License Agreement',
-      ENV['HOSTNAME']
+      ENV['HOST_NAME']
     )
   end
 
@@ -60,7 +60,7 @@ module CLA; extend self
         ),
         sequel[:tagged_pulls],
         sequel[:contributors],
-        ENV['HOSTNAME'],
+        ENV['HOST_NAME'],
         ENV['GITHUB_HOSTNAME'] || 'https://github.com/',
         ENV['GITHUB_VERIFIER_SECRET'],
         ENV['CLA_LABEL_NAME'] || 'cla-missing',
